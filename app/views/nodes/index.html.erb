@@ -1,0 +1,13 @@
+<h1>Listing nodes</h1>
+
+<ul>
+  <% @nodes.each do |node| %>
+    <% if node.sources.empty? %>
+      <%= render node %>
+    <% end %>
+  <% end %>
+</ul>
+
+<br />
+
+<%= link_to 'New Node', new_node_path %>

@@ -1,0 +1,14 @@
+<li class="node">
+  <span class="content"><%= node.content %></span>
+  <span class="timestamp">
+    (Node ID #<%= node.id %>, posted <%= time_ago_in_words(node.created_at) %> ago.)
+  </span>
+  <%= link_to 'Reply', new_node_path(:source_id => node.id) %>
+  <% unless node.sinks.empty? %>
+    <ul class="children">
+      <% node.sinks.each do |sink| %>
+        <%= render sink %>
+      <% end %>
+    </ul>
+  <% end %>
+</li>
