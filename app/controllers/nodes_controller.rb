@@ -48,11 +48,13 @@ class NodesController < ApplicationController
         if params[:source_id]
           @node.source_edges.create!(:source_id => params[:source_id])
         end
-        format.html { redirect_to @node, notice: 'Node was successfully created.' }
+        format.html { redirect_to nodes_path, notice: 'Node was successfully created.' }
         format.json { render json: @node, status: :created, location: @node }
+        format.js
       else
         format.html { render action: "new" }
         format.json { render json: @node.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
