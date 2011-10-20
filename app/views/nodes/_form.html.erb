@@ -14,8 +14,21 @@
   <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
 
   <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
     <%= f.label :content %><br />
     <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.select(:category,
+       [['Model', 'Model'],
+        ['Data', 'Data'],
+        ['Objective', 'Objective'],
+        ['Challenge', 'Challenge'],
+        ['Question', 'Question']]) %>
   </div>
   <div class="actions">
     <%= f.submit %>

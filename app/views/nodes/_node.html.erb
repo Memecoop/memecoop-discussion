@@ -1,8 +1,19 @@
 <li class="node">
+  <div class="header">
+    <span class="title">
+      <% if node.title %>
+        <%= node.title %>
+      <% else %>
+        [No Title]
+      <% end %>
+    </span>
+    <span class="category">Category: <%= node.category %></span>
+    <span class="timestamp">
+      - posted <%= time_ago_in_words(node.created_at) %> ago. (Node ID #<%= node.id %>.)
+    </span>
+  </div>
   <span class="content"><%= node.content %></span>
-  <span class="timestamp">
-    (Node ID #<%= node.id %>, posted <%= time_ago_in_words(node.created_at) %> ago.)
-  </span>
+  <br/>
   <%= link_to 'Reply', new_node_path(:source_id => node.id) %>
   <% unless node.sinks.empty? %>
     <ul class="children">
