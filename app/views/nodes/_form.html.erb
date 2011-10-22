@@ -11,7 +11,9 @@
     </div>
   <% end %>
 
-  <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
+  <% if @source_id %>
+    <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
+  <% end %>
 
   <div class="field">
     <%= f.label :title %><br />

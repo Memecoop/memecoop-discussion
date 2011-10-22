@@ -1,7 +1,14 @@
 class Node < ActiveRecord::Base
-  has_many :sink_edges, :class_name => 'Edge', :foreign_key => 'source_id'
+  attr_accessible :content, :title, :category
+
+  # "Sinks" refers to nodes at the end of edges going out from this Node.
+
+  has_many :sink_edges, :class_name => 'Edge', :foreign_key => 'source_id', :dependent => :destroy
   has_many :sinks, :through => :sink_edges
 
-  has_many :source_edges, :class_name => 'Edge', :foreign_key => 'sink_id'
+  # "Sources" refers to nodes at the beginning of edges coming into this Node.
+
+  has_many :source_edges, :class_name => 'Edge', :foreign_key => 'sink_id', :dependent => :destroy
   has_many :sources, :through => :source_edges
+
 end

@@ -7,9 +7,18 @@
         [No Title]
       <% end %>
     </span>
-    <span class="category">Category: <%= node.category %></span>
+    <span class="category">Category: 
+      <% if node.category %>
+        <%= node.category %>
+      <% else %>
+        [No Category]
+      <% end %>
+    </span>
     <span class="timestamp">
-      - posted <%= time_ago_in_words(node.created_at) %> ago. (Node ID #<%= node.id %>.)
+      - posted <%= time_ago_in_words(node.created_at) %> ago. 
+      <% if Rails.env.development? %>
+        (Debug: Node ID #<%= node.id %>; <%= node.source_edges.count %> sources; <%= node.sink_edges.count %> sinks.)
+      <% end %>
     </span>
   </div>
   <span class="content"><%= node.content %></span>
