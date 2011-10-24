@@ -1,0 +1,13 @@
+<footer>
+  <nav class="round">
+    <% if Rails.env.development? %>
+      <%= debug(params) %>
+      Current user: <% if current_user %><%= current_user.name %><% else %>none<% end %>
+    <% end %>
+    <ul>
+      <li><a href="http://blog.memecoop.com/about-us/">About Memecoop</a></li>
+      <li><a href="http://blog.memecoop.com/posts/">Blog</a></li>
+      <li><a href="mailto:info@memecoop.com">Contact</a></li>
+    </ul>
+  </nav>
+</footer>

@@ -15,15 +15,25 @@
       <% end %>
     </span>
     <span class="timestamp">
-      - posted <%= time_ago_in_words(node.created_at) %> ago. 
-      <% if Rails.env.development? %>
-        (Debug: Node ID #<%= node.id %>; <%= node.source_edges.count %> sources; <%= node.sink_edges.count %> sinks.)
+      - posted by
+      <% if node.creator %>
+        <%= node.creator.name %>
+      <% else %>
+        anonymous
       <% end %>
+      <%= time_ago_in_words(node.created_at) %> ago.
     </span>
   </div>
-  <span class="content"><%= node.content %></span>
+  <div class="content"><%= node.content %></div>
+
+  <% if Rails.env.development? %>
+    <div class="debug">
+      (Debug: Node ID #<%= node.id %>; <%= node.source_edges.count %> sources; <%= node.sink_edges.count %> sinks.)
+    </div>
+  <% end %>
+
   <br/>
-  <%= link_to 'Reply', new_node_path(:source_id => node.id) %>
+  <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "reply_button round" %>
   <% unless node.sinks.empty? %>
     <ul class="children">
       <% node.sinks.each do |sink| %>

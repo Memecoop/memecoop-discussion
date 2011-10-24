@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111020064139) do
+ActiveRecord::Schema.define(:version => 20111024075755) do
 
   create_table "edges", :force => true do |t|
     t.string   "type"
@@ -31,6 +31,19 @@ ActiveRecord::Schema.define(:version => 20111020064139) do
     t.datetime "updated_at"
     t.string   "title"
     t.string   "category"
+    t.integer  "creator_id"
+  end
+
+  create_table "users", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "crypted_password"
+    t.string   "password_salt"
+    t.string   "persistence_token"
+    t.string   "facebook_session_key"
+    t.integer  "facebook_uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

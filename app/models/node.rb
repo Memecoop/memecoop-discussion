@@ -11,4 +11,5 @@ class Node < ActiveRecord::Base
   has_many :source_edges, :class_name => 'Edge', :foreign_key => 'sink_id', :dependent => :destroy
   has_many :sources, :through => :source_edges
 
+  belongs_to :creator, :class_name => 'User', :foreign_key => 'creator_id'
 end

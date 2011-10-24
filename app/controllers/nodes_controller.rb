@@ -2,6 +2,7 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
+    @title = "All Nodes"
     @nodes = Node.all
 
     respond_to do |format|
@@ -42,6 +43,7 @@ class NodesController < ApplicationController
   # POST /nodes.json
   def create
     @node = Node.new(params[:node])
+    @node.creator = current_user
 
     respond_to do |format|
       if @node.save

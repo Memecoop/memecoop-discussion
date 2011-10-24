@@ -1,5 +1,7 @@
 Memegraph::Application.routes.draw do
   resources :nodes
+  resources :users
+  resources :user_sessions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -7,6 +9,11 @@ Memegraph::Application.routes.draw do
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
+
+  match '/help', :to => 'pages#help'
+  match '/signup',  :to => 'users#new'
+  match '/login', :to => 'user_sessions#new'
+  match '/logout', :to => 'user_sessions#destroy'
 
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
@@ -50,7 +57,7 @@ Memegraph::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'welcome#index'
+  root :to => 'nodes#index'
 
   # See how all your routes lay out with "rake routes"
 
