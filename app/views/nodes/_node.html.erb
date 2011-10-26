@@ -34,6 +34,7 @@
 
   <br/>
   <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "reply_button round" %>
+  <%= link_to 'Move To', node_path(node), :class => "move_to_button round" %>
   <% unless node.sinks.empty? %>
     <ul class="children">
       <% node.sinks.each do |sink| %>
