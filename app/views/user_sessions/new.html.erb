@@ -1,17 +1,6 @@
-<h1>Login</h1>
+<h1>Sign in</h1>
 
 <%= form_for @user_session do |f| %>
-  <% if @user_session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this session from being saved:</h2>
-
-      <ul>
-      <% @user_session.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
   <p>
     <%= f.label :name %><br />
     <%= f.text_field :name %>
@@ -23,4 +12,5 @@
   <p><%= f.submit "Submit" %></p>
 <% end %>
 
+<p>New user? <%= link_to "Register now!", signup_path %></p>
 

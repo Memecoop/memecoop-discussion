@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   def new
+    @title = "Sign in"
     @user_session = UserSession.new
   end
 
@@ -9,6 +10,8 @@ class UserSessionsController < ApplicationController
       flash[:notice] = "Successfully logged in."
       redirect_to root_url
     else
+      @title = "Sign in"
+      flash.now[:error] = "Invalid username/password combination."
       render :action => 'new'
     end
   end
