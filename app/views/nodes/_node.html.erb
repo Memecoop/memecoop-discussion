@@ -36,7 +36,6 @@
     </div>
   <% end %>
 
-  <br/>
   <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
   <%= link_to 'Move To', node_path(node), :class => "button round" %>
   <% if current_user && (node.creator == current_user) %>
