@@ -1,10 +1,11 @@
 class UsersController < ApplicationController
-
+  # GET /users/new
   def new
     @title = "Sign up"
     @user = User.new
   end
 
+  # POST /users
   def create
     @user = User.new(params[:user])
     if @user.save
@@ -16,11 +17,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1/edit
   def edit
     @title = "Edit User"
     @user = current_user
   end
 
+  # PUT /users/1
   def update
     @user = current_user
     if @user.update_attributes(params[:user])

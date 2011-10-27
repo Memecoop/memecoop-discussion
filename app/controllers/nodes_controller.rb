@@ -11,17 +11,6 @@ class NodesController < ApplicationController
     end
   end
 
-  # GET /nodes/1
-  # GET /nodes/1.json
-  def show
-    @node = Node.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @node }
-    end
-  end
-
   # GET /nodes/new
   # GET /nodes/new.json
   def new
@@ -32,11 +21,6 @@ class NodesController < ApplicationController
       format.html # new.html.erb
       format.json { render json: @node }
     end
-  end
-
-  # GET /nodes/1/edit
-  def edit
-    @node = Node.find(params[:id])
   end
 
   # POST /nodes
@@ -59,6 +43,22 @@ class NodesController < ApplicationController
         format.js
       end
     end
+  end
+
+  # GET /nodes/1
+  # GET /nodes/1.json
+  def show
+    @node = Node.find(params[:id])
+
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json { render json: @node }
+    end
+  end
+
+  # GET /nodes/1/edit
+  def edit
+    @node = Node.find(params[:id])
   end
 
   # PUT /nodes/1
