@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20111024075755) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "name",                 :null => false
     t.string   "email"
     t.string   "crypted_password"
     t.string   "password_salt"
