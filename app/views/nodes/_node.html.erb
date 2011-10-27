@@ -24,7 +24,7 @@
       <%= time_ago_in_words(node.created_at) %> ago.
     </span>
   </div>
-  <div class="content"><%= node.content %></div>
+  <div class="content"><%= simple_format node.content %></div>
 
   <% if Rails.env.development? %>
     <div class="debug">
