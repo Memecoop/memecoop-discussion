@@ -2,8 +2,8 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @title = "All Nodes"
-    @nodes = Node.all
+    @title = "All Topics"
+    @nodes = Node.find_all_by_category(:topic)
 
     respond_to do |format|
       format.html # index.html.erb

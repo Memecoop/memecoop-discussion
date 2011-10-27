@@ -28,17 +28,25 @@
 
   <% if Rails.env.development? %>
     <div class="debug">
-      (Debug: Node ID #<%= node.id %>; <%= node.source_edges.count %> sources; <%= node.sink_edges.count %> sinks.)
+      (Debug:
+      Node ID #<%= node.id %>;
+      <%= node.source_edges.count %> sources;
+      <%= node.sink_edges.count %> sinks.);
+      recurse_count = <%= recurse_count %>
     </div>
   <% end %>
 
   <br/>
   <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "reply_button round" %>
   <%= link_to 'Move To', node_path(node), :class => "move_to_button round" %>
-  <% unless node.sinks.empty? %>
+  <% if recurse_count > 3 %>
+    <ul class="children">
+      <li><%= link_to '...', node_path(node) %></li>
+    </ul>
+  <% elsif !node.sinks.empty? %>
     <ul class="children">
       <% node.sinks.each do |sink| %>
-        <%= render sink %>
+        <%= render sink, :recurse_count => recurse_count + 1 %>
       <% end %>
     </ul>
   <% end %>

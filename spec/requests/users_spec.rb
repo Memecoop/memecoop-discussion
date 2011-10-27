@@ -32,7 +32,7 @@ describe "Users" do
           click_button
           response.should have_selector("div.flash.success",
                                         :content => "Registration successful.")
-          response.should render_template('nodes/index')
+          response.should render_template('pages/home')
         end.to change(User, :count).by(1)
       end
     end

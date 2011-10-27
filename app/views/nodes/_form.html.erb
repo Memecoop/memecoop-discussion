@@ -16,11 +16,12 @@
   <div class="field">
     <%= f.label :category %><br />
     <%= f.select(:category,
-       [['Model', 'Model'],
-        ['Data', 'Data'],
-        ['Objective', 'Objective'],
-        ['Challenge', 'Challenge'],
-        ['Question', 'Question']]) %>
+       [['Topic', :topic],
+        ['Model', :model],
+        ['Data', :data],
+        ['Objective', :objective],
+        ['Challenge', :challenge],
+        ['Question', :question]]) %>
   </div>
   <div class="actions">
     <%= f.submit %>

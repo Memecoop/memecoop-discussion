@@ -13,8 +13,7 @@ describe NodesController do
 
     it "has the right title" do
       get 'index'
-      response.should have_selector("title",
-                                    :content => "All Nodes")
+      response.should have_selector("title", :content => "All Topics")
     end
   end
 

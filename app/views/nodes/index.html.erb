@@ -1,13 +1,13 @@
-<h1>Listing nodes</h1>
+<h1>Listing Top-Level Topics</h1>
 
 <ul>
   <% @nodes.each do |node| %>
-    <% if node.sources.empty? %>
-      <%= render node %>
+    <% if (node.sources.empty?) %>
+      <%= render node, :recurse_count => 0 %>
     <% end %>
   <% end %>
 </ul>
 
 <br />
 
-<%= link_to 'New Node', new_node_path, :class => "new_node_button round" %>
+<%= render "shared/new_node_link" %>

@@ -4,7 +4,7 @@ describe "NavigationLinks" do
 
   it "has a Home page at '/'" do
     get '/'
-    response.should have_selector('title', :content => "All Nodes")
+    response.should have_selector('title', :content => "Home")
   end
 
   it "has a Help page at '/help'" do
