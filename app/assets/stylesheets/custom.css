@@ -80,18 +80,17 @@ nav ul li a:hover {
 
 /* Sign up button */
 
-a.move_to_button,
-a.new_node_button,
-a.reply_button {
+a.button {
   margin-left: auto;
   margin-right: auto;
+  font-size: .8em;
   text-align: center;
   color: #fff;
   background: #006400;
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 3px;
-  padding-bottom:3px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom:2px;
 }
 
 /* Round corners */

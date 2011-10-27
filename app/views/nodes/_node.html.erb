@@ -37,8 +37,12 @@
   <% end %>
 
   <br/>
-  <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "reply_button round" %>
-  <%= link_to 'Move To', node_path(node), :class => "move_to_button round" %>
+  <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
+  <%= link_to 'Move To', node_path(node), :class => "button round" %>
+  <% if current_user && (node.creator == current_user) %>
+    <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
+  <% end %>
+
   <% if recurse_count > 3 %>
     <ul class="children">
       <li><%= link_to '...', node_path(node) %></li>
