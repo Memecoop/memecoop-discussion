@@ -1,5 +1,5 @@
 <div class="node">
-  <div class="header">
+  <div class="title-bar">
     <span class="title">
       <% if node.title %>
         <%= node.title %>
@@ -7,6 +7,8 @@
         [No Title]
       <% end %>
     </span>
+  </div>
+  <div class="metadata-bar">
     <span class="category">Category: 
       <% if node.category %>
         <%= node.category %>
@@ -23,6 +25,14 @@
       <% end %>
       <%= time_ago_in_words(node.created_at) %> ago.
     </span>
+    <span class="actions">
+      <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
+      <%= link_to 'View', node_path(node), :class => "button round" %>
+      <% if current_user && (node.creator == current_user) %>
+        <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
+        <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
+      <% end %>
+    </span>
   </div>
   <div class="content"><%= simple_format node.content %></div>
 
@@ -35,15 +45,6 @@
       recurse_count = <%= recurse_count %>
     </div>
   <% end %>
-
-  <div class="actions">
-    <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
-    <%= link_to 'View', node_path(node), :class => "button round" %>
-    <% if current_user && (node.creator == current_user) %>
-      <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
-      <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
-    <% end %>
-  </div>
 
   <% if recurse_count > 3 %>
     <ul class="node-container">
