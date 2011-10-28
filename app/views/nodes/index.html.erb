@@ -1,9 +1,11 @@
 <h1>Listing Top-Level Topics</h1>
 
-<ul>
+<ul class="node-container">
   <% @nodes.each do |node| %>
     <% if (node.sources.empty?) %>
-      <%= render node, :recurse_count => 0 %>
+      <li>
+        <%= render node, :recurse_count => 0 %>
+      </li>
     <% end %>
   <% end %>
 </ul>

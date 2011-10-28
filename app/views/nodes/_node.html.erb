@@ -1,4 +1,4 @@
-<li class="node">
+<div class="node">
   <div class="header">
     <span class="title">
       <% if node.title %>
@@ -36,21 +36,24 @@
     </div>
   <% end %>
 
-  <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
-  <%= link_to 'Move To', node_path(node), :class => "button round" %>
-  <% if current_user && (node.creator == current_user) %>
-    <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
-  <% end %>
+  <div class="actions">
+    <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
+    <%= link_to 'View', node_path(node), :class => "button round" %>
+    <% if current_user && (node.creator == current_user) %>
+      <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
+      <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
+    <% end %>
+  </div>
 
   <% if recurse_count > 3 %>
-    <ul class="children">
-      <li><%= link_to '...', node_path(node) %></li>
+    <ul class="node-container">
+      <li><%= link_to '(view node to see more)', node_path(node) %></li>
     </ul>
   <% elsif !node.sinks.empty? %>
-    <ul class="children">
+    <ul class="node-container">
       <% node.sinks.each do |sink| %>
         <%= render sink, :recurse_count => recurse_count + 1 %>
       <% end %>
     </ul>
   <% end %>
-</li>
+</div>
