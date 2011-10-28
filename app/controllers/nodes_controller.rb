@@ -3,7 +3,7 @@ class NodesController < ApplicationController
   # GET /nodes.json
   def index
     @title = "All Topics"
-    @nodes = Node.find_all_by_category(:topic)
+    @nodes = Node.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -49,6 +49,7 @@ class NodesController < ApplicationController
   # GET /nodes/1.json
   def show
     @node = Node.find(params[:id])
+    @title = @node.title
 
     respond_to do |format|
       format.html # show.html.erb
