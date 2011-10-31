@@ -14,6 +14,7 @@ class NodesController < ApplicationController
   # GET /nodes/new
   # GET /nodes/new.json
   def new
+    @submit_text = "Create"
     @node = Node.new
     @source_id = params[:source_id]
 
@@ -59,6 +60,7 @@ class NodesController < ApplicationController
 
   # GET /nodes/1/edit
   def edit
+    @submit_text = "Update"
     @node = Node.find(params[:id])
   end
 
