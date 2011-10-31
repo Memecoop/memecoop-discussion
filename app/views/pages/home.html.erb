@@ -1,16 +1,23 @@
 <h2>
-  Welcome to the Memecoop alpha site!
+  Welcome to the Memecoop (pre-)alpha!
 </h2>
 
 <p>
-  Everything is still very rough, from the layout to the colors to the functionality. There are
-  probably some bugs, and we make no guarantees about uptime or loss of data. But if you're willing
-  to help us play around, we'd certainly appreciate it!
+  We have a lot of work left to do before this is ready for the public, but you can help us now
+  by playing with the site and providing feedback. We apologize in advance when (not if) you hit
+  bugs, and we sincerely appreciate your patience while we keep building.
 </p>
 
 <p>
-  To get started, browse <%= link_to "all current discussions", nodes_path %> or use the link below
-  to start a new one.
-<p>
+  To get started:
+</p>
 
-<%= render "shared/new_node_link" %>
+<ul>
+  <li><%= link_to "Register", signup_path %> for a user account.*</li>
+  <li>Browse <%= link_to "current discussions", nodes_path %>.</li>
+  <li>Start a <%= link_to "new discussion", new_node_path %>.</li>
+</ul>
+
+<p>
+  *There's some functionality that's tied to being logged in, and we're planning to add more, so we'd prefer that you avoid browsing/posting as Anonymous.
+</p>
