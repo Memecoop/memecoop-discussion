@@ -51,6 +51,7 @@ nav {
 nav {
   background-color: white;
   padding: 0 0.7em;
+  margin-left: 1em;
   white-space: nowrap;
 }
 
@@ -78,7 +79,7 @@ nav ul li a:hover {
   text-decoration: underline;
 }
 
-/* Sign up button */
+/* Buttons */
 
 a.button {
   margin-left: auto;

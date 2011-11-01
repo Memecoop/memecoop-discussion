@@ -1,18 +1,25 @@
 <header>
   <% logo = image_tag("logo.png", :alt => "Memecoop Logo", :class => "round", :width => 100) %>
   <%= link_to logo, root_path %>
+
   <nav class="round">
     <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <li><%= link_to "All Discussions", nodes_path %>
-      <li><%= link_to "Help", help_path %></li>
       <% if current_user %>
+        <li>Logged in as <%= current_user.name %> | </li>
         <li><%= link_to "Edit Profile", edit_user_path(:current) %></li>
         <li><%= link_to "Logout", logout_path %></li>
       <% else %>
         <li><%= link_to "Register", new_user_path %></li>
         <li><%= link_to "Sign in", login_path %></li>
       <% end %>
+    </ul>
+  </nav>
+
+  <nav class="round">
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to "All Discussions", nodes_path %>
+      <li><%= link_to "Help", help_path %></li>
     </ul>
   </nav>
 </header>
