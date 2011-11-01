@@ -24,6 +24,28 @@ class NodesController < ApplicationController
     end
   end
 
+  # GET /nodes/feedback
+  def feedback
+    @submit_text = "Leave Feedback"
+    logger.debug "params[:path] = " + params[:path]
+
+    # Check for "feedback?path" in the URL, to avoid recursive feedback-on-feedback-on- ...
+    if /feedback\?path/i =~ params[:path]
+      redirect_to feedback_path(:path => feedback_path)
+    else
+      title = "Feedback: [Summarize your feedback here]"
+      content = "[Provide detailed feedback here.]\n\n" +
+                "(For page: " + params[:path] + ")"
+
+      @node = Node.new(:title => title, :content => content, :category => :feedback)
+
+      respond_to do |format|
+        format.html { render "new" }
+        format.json { render json: @node }
+      end
+    end
+  end
+
   # POST /nodes
   # POST /nodes.json
   def create
