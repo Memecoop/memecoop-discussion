@@ -12,6 +12,7 @@ Memegraph::Application.routes.draw do
 
   match '/home', :to => 'pages#home'
   match '/help', :to => 'pages#help'
+  match '/feedback', :to => 'nodes#feedback'
   match '/signup',  :to => 'users#new'
   match '/login', :to => 'user_sessions#new'
   match '/logout', :to => 'user_sessions#destroy'
