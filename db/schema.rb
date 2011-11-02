@@ -11,14 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111024075755) do
+ActiveRecord::Schema.define(:version => 20111102074123) do
 
   create_table "edges", :force => true do |t|
-    t.string   "type"
     t.integer  "source_id"
     t.integer  "sink_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "category",   :default => "related"
   end
 
   add_index "edges", ["sink_id"], :name => "index_edges_on_sink_id"
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20111024075755) do
     t.integer  "facebook_uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "roles"
   end
 
 end

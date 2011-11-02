@@ -1,5 +1,5 @@
 class Edge < ActiveRecord::Base
-  # attr_accessible :type
+  attr_accessible :source_id, :sink_id, :category
 
   belongs_to :source, :class_name => 'Node', :foreign_key => 'source_id'
   belongs_to :sink,   :class_name => 'Node', :foreign_key => 'sink_id'

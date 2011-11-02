@@ -12,4 +12,6 @@
 
 <br />
 
-<%= render "shared/new_node_link" %>
+<% if permitted_to? :create, Node.new %>
+  <%= render "shared/new_node_link" %>
+<% end %>

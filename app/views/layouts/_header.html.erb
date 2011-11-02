@@ -19,6 +19,12 @@
     <ul>
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "All Discussions", nodes_path %>
+      <% if permitted_to? :manage, User.new %>
+        <li><%= link_to "Manage Users", users_path %></li>
+      <% end %>
+      <% if permitted_to? :manage, Edge.new %>
+        <li><%= link_to "Manage Edges", edges_path %></li>
+      <% end %>
       <li><%= link_to "Help", help_path %></li>
     </ul>
   </nav>

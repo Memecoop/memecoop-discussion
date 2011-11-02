@@ -1,0 +1,25 @@
+<h1>Listing edges</h1>
+<table>
+  <tr>
+    <th>Source</th>
+    <th>Sink</th>
+    <th>Category</th>
+    <th></th>
+  </tr>
+  <% @edges.each do |edge| %>
+    <tr>
+      <% source_title = truncate(edge.source.title,
+                                 :length => 40,
+                                 :omission => '... ',
+                                 :separate => ' ') %>
+      <% sink_title = truncate(edge.sink.title,
+                               :length => 40,
+                               :omission => '... ',
+                               :separate => ' ') %>
+      <td><%= "#{source_title} (id: #{edge.source_id})" %></td>
+      <td><%= "#{sink_title} (id: #{edge.sink_id})" %></td>
+      <td><%= edge.category %></td>
+      <td><%= link_to 'Destroy', edge, :confirm => 'Are you sure?', :method => :delete %></td>
+    </tr>
+  <% end %>
+</table>

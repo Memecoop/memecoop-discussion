@@ -1,4 +1,7 @@
 class NodesController < ApplicationController
+  filter_resource_access
+  filter_access_to :feedback, :require => :create
+
   # GET /nodes
   # GET /nodes.json
   def index

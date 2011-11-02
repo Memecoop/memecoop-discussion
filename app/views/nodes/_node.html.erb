@@ -26,10 +26,15 @@
       <%= time_ago_in_words(node.created_at) %> ago.
     </span>
     <span class="actions">
-      <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
+      <% if permitted_to? :create, Node.new %>
+        <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
+      <% end %>
       <%= link_to 'View', node_path(node), :class => "button round" %>
-      <% if current_user && (node.creator == current_user) %>
+      <%= link_to 'Connect to...', new_edge_path(:source_id => node.id), :class => "button round" %>
+      <% if permitted_to? :edit, node %>
         <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
+      <% end %>
+      <% if permitted_to? :destroy, node %>
         <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
       <% end %>
     </span>

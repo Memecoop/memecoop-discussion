@@ -1,4 +1,18 @@
 class UsersController < ApplicationController
+  filter_resource_access
+
+  # GET /users
+  # GET /users.json
+  def index
+    @title = "All Users"
+    @users = User.all
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @users }
+    end
+  end
+
   # GET /users/new
   def new
     @title = "Sign up"
@@ -28,11 +42,22 @@ class UsersController < ApplicationController
     @user = current_user
     if @user.update_attributes(params[:user])
       flash[:success] = "Successfully updated profile."
-      redirect_to root_url
+      redirect_to root_path
     else
       @title = "Edit User"
       render :action => 'edit'
     end
   end
 
+  # DELETE /users/1
+  # DELETE /users/1.json
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    respond_to do |format|
+      format.html { redirect_to users_path }
+      format.json { head :ok }
+    end
+  end
 end

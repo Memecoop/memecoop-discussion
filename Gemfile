@@ -7,7 +7,12 @@ gem 'rails', '3.1.0'
 
 
 gem 'pg'
+
+# Use Authlogic for user authentication.
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
+
+# Use declarative_authorization for role assignments.
+gem "declarative_authorization", :git => "git://github.com/stffn/declarative_authorization.git"
 
 # Gems used only for assets and not required
 # in production environments by default.
