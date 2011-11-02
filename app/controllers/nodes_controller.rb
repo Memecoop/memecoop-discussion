@@ -112,7 +112,7 @@ class NodesController < ApplicationController
     @node.destroy
 
     respond_to do |format|
-      format.html { redirect_to nodes_url }
+      format.html { redirect_to nodes_path }
       format.json { head :ok }
     end
   end

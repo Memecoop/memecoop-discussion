@@ -8,7 +8,7 @@ class UserSessionsController < ApplicationController
     @user_session = UserSession.new(params[:user_session])
     if @user_session.save
       flash[:notice] = "Successfully logged in."
-      redirect_to root_url
+      redirect_back_or root_path
     else
       @title = "Sign in"
       flash.now[:error] = "Invalid username/password combination."
@@ -17,9 +17,8 @@ class UserSessionsController < ApplicationController
   end
 
   def destroy
-    @user_session = UserSession.find
-    @user_session.destroy
+    current_user_session.destroy
     flash[:notice] = "Successfully logged out."
-    redirect_to root_url
+    redirect_to root_path
   end
 end
