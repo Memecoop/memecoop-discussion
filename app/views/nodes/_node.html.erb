@@ -30,7 +30,9 @@
         <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
       <% end %>
       <%= link_to 'View', node_path(node), :class => "button round" %>
-      <%= link_to 'Connect to...', new_edge_path(:source_id => node.id), :class => "button round" %>
+      <% if permitted_to? :create, Edge.new %>
+        <%= link_to 'Connect to...', new_edge_path(:source_id => node.id), :class => "button round" %>
+      <% end %>
       <% if permitted_to? :edit, node %>
         <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
       <% end %>
