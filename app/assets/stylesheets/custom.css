@@ -3,21 +3,16 @@
 }
 
 body {
-  background: #cff;
+  background: #C0D4EE;
+  font-size: 13px;
 }
 
 header {
-  padding-top: 20px;
-}
-
-header img {
-  padding: 1em;
-  background: #fff;
+  padding: 20px 0 50px 0;
 }
 
 section {
   margin-top: 1em;
-  font-size: 120%;
   padding: 20px;
   background: #fff;
 }
@@ -44,14 +39,17 @@ a:visited {
 
 /* Navigation */
 
-nav {
+#nav_menu {
+  float: left;
+}
+
+#user_menu {
   float: right;
 }
 
 nav {
   background-color: white;
   padding: 0 0.7em;
-  margin-left: 1em;
   white-space: nowrap;
 }
 
@@ -63,11 +61,10 @@ nav ul {
 nav ul li {
   list-style-type: none;
   display: inline-block;
-  padding: 0.2em 0;
+  padding: 0.2em 5px;
 }
 
 nav ul li a {
-  padding: 0 5px;
   font-weight: bold;
 }
 
@@ -77,21 +74,6 @@ nav ul li a:visited {
 
 nav ul li a:hover {
   text-decoration: underline;
-}
-
-/* Buttons */
-
-a.button {
-  margin-left: auto;
-  margin-right: auto;
-  font-size: .8em;
-  text-align: center;
-  color: #fff;
-  background: #006400;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 2px;
-  padding-bottom:2px;
 }
 
 /* Round corners */

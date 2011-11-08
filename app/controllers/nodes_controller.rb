@@ -18,7 +18,7 @@ class NodesController < ApplicationController
   # GET /nodes/new.json
   def new
     @submit_text = "Create"
-    @node = Node.new
+    @node = Node.new(:title => params[:title])
     @source_id = params[:source_id]
 
     respond_to do |format|
@@ -30,7 +30,6 @@ class NodesController < ApplicationController
   # GET /nodes/feedback
   def feedback
     @submit_text = "Leave Feedback"
-    logger.debug "params[:path] = " + params[:path]
 
     # Check for "feedback?path" in the URL, to avoid recursive feedback-on-feedback-on- ...
     if /feedback\?path/i =~ params[:path]

@@ -1,57 +1,62 @@
-<div class="node">
+<div class="node round">
+
   <div class="title-bar">
     <span class="title">
-      <% if node.title %>
-        <%= node.title %>
+      <% if node.title.blank? %>
+        <% node_title = "[No Title]" %>
       <% else %>
-        [No Title]
+        <% node_title = node.title %>
       <% end %>
+      <%= link_to node_title, node_path(node) %>
     </span>
   </div>
+
   <div class="metadata-bar">
-    <span class="category">Category: 
+    <span class="timestamp">
+      Posted by
+      <% if node.creator %>
+        <%= node.creator.name %>
+      <% else %>
+        anonymous
+      <% end %>
+      <%= time_ago_in_words(node.created_at) %> ago (<%= node.created_at.strftime("%m/%d/%Y, %I:%M %p") %>), 
+    </span>
+    <span class="category">Category:
       <% if node.category %>
         <%= node.category %>
       <% else %>
         [No Category]
       <% end %>
     </span>
-    <span class="timestamp">
-      - posted by
-      <% if node.creator %>
-        <%= node.creator.name %>
-      <% else %>
-        anonymous
-      <% end %>
-      <%= time_ago_in_words(node.created_at) %> ago.
-    </span>
+    <% if Rails.env.development? %>
+      <span class="debug">
+        (Debug:
+        Node ID #<%= node.id %>;
+        <%= node.source_edges.count %> sources;
+        <%= node.sink_edges.count %> sinks.);
+        recurse_count = <%= recurse_count %>
+      </span>
+    <% end %>
     <span class="actions">
-      <% if permitted_to? :create, Node.new %>
-        <%= link_to 'Reply', new_node_path(:source_id => node.id), :class => "button round" %>
-      <% end %>
-      <%= link_to 'View', node_path(node), :class => "button round" %>
-      <% if permitted_to? :create, Edge.new %>
-        <%= link_to 'Connect to...', new_edge_path(:source_id => node.id), :class => "button round" %>
-      <% end %>
       <% if permitted_to? :edit, node %>
-        <%= link_to 'Edit', edit_node_path(node), :class => "button round" %>
+        <%= link_to 'Edit', edit_node_path(node) %>
       <% end %>
       <% if permitted_to? :destroy, node %>
-        <%= link_to 'Delete', node_path(node), :method => :delete, :class => "button round" %>
+        <%= link_to 'Delete', node_path(node), :method => :delete %>
+      <% end %>
+      <% if permitted_to? :create, Edge.new %>
+        <%= link_to 'Connect to...', new_edge_path(:source_id => node.id) %>
       <% end %>
     </span>
   </div>
   <div class="content"><%= simple_format node.content %></div>
 
-  <% if Rails.env.development? %>
-    <div class="debug">
-      (Debug:
-      Node ID #<%= node.id %>;
-      <%= node.source_edges.count %> sources;
-      <%= node.sink_edges.count %> sinks.);
-      recurse_count = <%= recurse_count %>
-    </div>
-  <% end %>
+  <div class="reply">
+    <% if permitted_to? :create, Node.new %>
+      <%= link_to 'Reply', new_node_path(:source_id => node.id,
+                                         :title => reply_title(node.title)) %>
+    <% end %>
+  </div>
 
   <% if recurse_count > 3 %>
     <ul class="node-container">
