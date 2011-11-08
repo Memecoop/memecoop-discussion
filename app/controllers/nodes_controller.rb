@@ -52,6 +52,11 @@ class NodesController < ApplicationController
   # POST /nodes.json
   def create
     @node = Node.new(params[:node])
+    
+    # Note to Geeber - there is probably a more elegant way to do this?
+    if (params[:title])
+      @node.title = params[:title]
+    end
     @node.creator = current_user
 
     respond_to do |format|
