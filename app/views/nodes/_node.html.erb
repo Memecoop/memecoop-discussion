@@ -55,7 +55,7 @@
     <% if permitted_to? :create, Node.new %>
     
      <% # this looks ugly - probably a cleaner way to code it %>
-      <div class="reply_stuff">
+      <div class="reply_form">
         <%= form_for(Node.new) do |f| %>
           <div class="field">
             <%= f.text_area :content %>
