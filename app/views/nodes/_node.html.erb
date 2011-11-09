@@ -53,21 +53,25 @@
 
   <div class="reply">
     <% if permitted_to? :create, Node.new %>
-    
-     <% # this looks ugly - probably a cleaner way to code it %>
-      <div class="reply_stuff">
-        <%= form_for(Node.new) do |f| %>
-          <div class="field">
-            <%= f.text_area :content %>
-          </div>
-          <input type="hidden" id="title" name="title" value="<%= reply_title(node.title) %>" />
-          <input type="hidden" id="source_id" name="source_id" value="<%= node.id %>" />
-          <div class="action">
-            <%= f.submit %>
-          </div>
-        <% end %></div>
-        <%= link_to 'Reply', new_node_path(:source_id => node.id, :title => reply_title(node.title)), :class => "reply_link" %>
-      
+
+    <% # TODO: Is there a cleaner way to code this? %>
+    <div class="reply_form">
+      <%= form_for(Node.new) do |f| %>
+        <div class="field">
+          <%= f.text_area :content %>
+        </div>
+        <%= f.hidden_field :title, :value => reply_title(node.title) %>
+        <input type="hidden" id="source_id" name="source_id" value="<%= node.id %>" />
+        <div class="action">
+          <%= f.submit %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= link_to 'Reply',
+                new_node_path(:source_id => node.id, :title => reply_title(node.title)),
+                :class => "reply_link" %>
+
     <% end %>
   </div>
 

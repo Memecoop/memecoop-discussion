@@ -1,9 +1,9 @@
 $(document).ready(function(){
-  $(".reply_stuff").hide();
+  $(".reply_form").hide();
   
   $(".reply_link").mousedown(function(event){
     event.preventDefault();
-    $(this).prev(".reply_stuff").toggle(true);
+    $(this).prev(".reply_form").toggle(true);
     $(this).toggle(false);
        
     
