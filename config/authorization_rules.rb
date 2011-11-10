@@ -10,7 +10,7 @@ authorization do
 
   role :user do
     has_permission_on :nodes, :to => [:read, :create]
-    has_permission_on :nodes, :to => :manage do
+    has_permission_on :nodes, :to => :update do
       if_attribute :creator => is {user}
     end
   end
