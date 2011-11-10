@@ -3,6 +3,7 @@ Memegraph::Application.routes.draw do
   resources :edges, :only => [:index, :new, :create, :destroy]
   resources :users, :only => [:index, :new, :create, :edit, :update, :destroy]
   resources :user_sessions, :only => [:new, :create, :destroy]
+  resources :ratings, :only => [:create]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
