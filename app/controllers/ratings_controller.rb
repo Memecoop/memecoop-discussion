@@ -12,6 +12,7 @@ class RatingsController < ApplicationController
     respond_to do |format|
       if @rating.save
         format.html { redirect_to nodes_path, notice: 'Rating was successfully created.' }
+        format.js { render :nothing => true }
       end
     end
   end
