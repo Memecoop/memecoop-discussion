@@ -59,7 +59,7 @@
 
     <% # TODO: Is there a cleaner way to code this? %>
     <div class="reply_form">
-      <%= form_for(Node.new) do |f| %>
+      <%= form_for(Node.new, :remote => true) do |f| %>
         <div class="field">
           <%= f.text_area :content %>
         </div>
