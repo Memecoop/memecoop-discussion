@@ -5,8 +5,9 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-
-gem 'pg'
+# Use OmniAuth for Facebook and other external authentication schemes
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 # Use Authlogic for user authentication.
 gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => 'rails3'
@@ -32,6 +33,10 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+group :production do
+  gem 'pg'
+end
 
 group :development do
   gem 'rspec-rails', '2.6.1'

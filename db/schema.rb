@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109081410) do
+ActiveRecord::Schema.define(:version => 20111115051646) do
 
   create_table "edges", :force => true do |t|
     t.integer  "source_id"
@@ -45,6 +45,14 @@ ActiveRecord::Schema.define(:version => 20111109081410) do
 
   add_index "ratings", ["node_id", "user_id", "key"], :name => "index_ratings_on_node_id_and_user_id_and_key", :unique => true
   add_index "ratings", ["node_id"], :name => "index_ratings_on_node_id"
+
+  create_table "user_authenticators", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                 :null => false

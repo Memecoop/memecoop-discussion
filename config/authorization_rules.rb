@@ -14,6 +14,9 @@ authorization do
     has_permission_on :nodes, :to => :update do
       if_attribute :creator => is {user}
     end
+    has_permission_on :users, :to => :update do
+     if_attribute :id => is {user.id}
+    end
     has_permission_on :ratings, :to => :create
   end
 
