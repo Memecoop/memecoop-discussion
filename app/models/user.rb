@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   acts_as_authentic do |c|
     c.login_field = :name
     c.merge_validates_length_of_login_field_options :within => 2..50
+
+    c.require_password_confirmation = false
+    c.validate_password_field=false
   end
 
   validates_uniqueness_of :email
@@ -11,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :posts, :class_name => 'Node', :foreign_key => 'creator_id'
   has_many :ratings
+  has_many :user_authenticators
 
   # Code to support declarative_authorization package.
 
