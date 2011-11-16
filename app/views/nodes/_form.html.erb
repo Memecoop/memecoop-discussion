@@ -5,6 +5,10 @@
     <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
   <% end %>
 
+  <% if @topic_id %>
+    <input type="hidden" id="topic_id" name="topic_id" value="<%= @topic_id %>" />
+  <% end %>
+
   <div class="field">
     <%= f.label :title %><br />
     <%= f.text_field :title, :size => "80" %>

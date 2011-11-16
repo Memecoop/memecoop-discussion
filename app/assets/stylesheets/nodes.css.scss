@@ -7,17 +7,17 @@ textarea {
   height: 15em;
 }
 
-ul.node-container {
+ul.sibling_node_list {
   list-style-type: none;
 }
 
-.node {
+.node_container {
   padding: 5px 10px 5px 10px;
   border: 1px solid #E0E0E0;
   margin-top: 5px;
 }
 
-.title-bar {
+.title_bar {
   background-color: #E0E0E0;
   .title {
     font-size: 100%;
@@ -27,7 +27,7 @@ ul.node-container {
   }
 }
 
-.metadata-bar {
+.metadata_bar {
   background-color: #F0F0F0;
   font-size: 0.8em;
   padding: 3px 5px 3px 5px;

@@ -1,17 +1,37 @@
-<h1>All Discussions</h1>
+<h1>Listing nodes</h1>
 
-<ul class="node-container">
-  <% @nodes.each do |node| %>
-    <% if (node.sources.empty?) %>
-      <li>
-        <%= render node, :recurse_count => 0 %>
-      </li>
-    <% end %>
-  <% end %>
-</ul>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Content</th>
+    <th>Creator</th>
+    <th>Sources</th>
+    <th>Sinks</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
 
-<br />
-
-<% if permitted_to? :create, Node.new %>
-  <%= render "shared/new_node_link" %>
+<% @nodes.each do |node| %>
+  <tr>
+    <td><%= node.id %></td>
+    <% title = truncate(node.title,
+                        :length => 30,
+                        :omission => '... ',
+                        :separate => ' ') %>
+    <td><%= node.title %></td>
+    <% content = truncate(node.content,
+                          :length => 40,
+                          :omission => '... ',
+                          :separate => ' ') %>
+    <td><%= content %></td>
+    <td><%= node.creator.name %></td>
+    <td><%= node.sources.map {|s| s.id}.join(", ") %></td>
+    <td><%= node.sinks.map {|s| s.id}.join(", ") %></td>
+    <td><%= link_to 'Show', node %></td>
+    <td><%= link_to 'Edit', edit_node_path(node) %></td>
+    <td><%= link_to 'Destroy', node, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
 <% end %>
+</table>

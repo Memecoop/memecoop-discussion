@@ -1,6 +1,6 @@
-<div class="node round">
+<div class="node round" id="node_<%= node.id %>">
 
-  <div class="title-bar">
+  <div class="title_bar" id="title_bar_<%= node.id %>">
     <span class="title">
       <% if node.title.blank? %>
         <% node_title = "[No Title]" %>
@@ -14,7 +14,7 @@
     </span>
   </div>
 
-  <div class="metadata-bar">
+  <div class="metadata_bar" id="metadata_bar_<%= node.id %>">
     <span class="timestamp">
       Posted by
       <% if node.creator %>
@@ -36,8 +36,8 @@
         (Debug:
         Node ID #<%= node.id %>;
         <%= node.source_edges.count %> sources;
-        <%= node.sink_edges.count %> sinks.);
-        recurse_count = <%= recurse_count %>
+        <%= node.sink_edges.count %> sinks;
+        depth = <%= options[:depth] %>)
       </span>
     <% end %>
     <span class="actions">
@@ -52,9 +52,9 @@
       <% end %>
     </span>
   </div>
-  <div class="content"><%= simple_format node.content %></div>
+  <div class="content" id="content_<%= node.id %>"><%= simple_format node.content %></div>
 
-  <div class="reply">
+  <div class="reply" id="reply_to_<%= node.id %>">
     <% if permitted_to? :create, Node.new %>
 
     <% # TODO: Is there a cleaner way to code this? %>
@@ -76,16 +76,4 @@
                 :class => "reply_link" %>
     <% end %>
   </div>
-
-  <% if recurse_count > 3 %>
-    <ul class="node-container">
-      <li><%= link_to '(view node to see more)', node_path(node) %></li>
-    </ul>
-  <% elsif !node.sinks.empty? %>
-    <ul class="node-container">
-      <% node.sinks.each do |sink| %>
-        <%= render sink, :recurse_count => recurse_count + 1 %>
-      <% end %>
-    </ul>
-  <% end %>
 </div>

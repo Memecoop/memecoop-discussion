@@ -1,0 +1,10 @@
+<h1>Title: <%= @topic.title %></h1>
+<h4>Description: <%= @topic.description %></h4>
+
+<%= traverse_node_tree(@tree[:roots]) {|n| @tree[:children][n]} %>
+
+<br />
+
+<% if permitted_to? :create, Node.new %>
+  <%= render_new_node_link :topic_id => @topic.id %>
+<% end %>

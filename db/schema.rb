@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111109081410) do
+ActiveRecord::Schema.define(:version => 20111114061228) do
 
   create_table "edges", :force => true do |t|
     t.integer  "source_id"
@@ -45,6 +45,25 @@ ActiveRecord::Schema.define(:version => 20111109081410) do
 
   add_index "ratings", ["node_id", "user_id", "key"], :name => "index_ratings_on_node_id_and_user_id_and_key", :unique => true
   add_index "ratings", ["node_id"], :name => "index_ratings_on_node_id"
+
+  create_table "topic_node_memberships", :id => false, :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "node_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "topic_node_memberships", ["node_id"], :name => "index_topic_node_memberships_on_node_id"
+  add_index "topic_node_memberships", ["topic_id", "node_id"], :name => "index_topic_node_memberships_on_topic_id_and_node_id", :unique => true
+  add_index "topic_node_memberships", ["topic_id"], :name => "index_topic_node_memberships_on_topic_id"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "creator_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "name",                 :null => false

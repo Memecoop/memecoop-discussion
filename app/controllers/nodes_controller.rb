@@ -5,8 +5,8 @@ class NodesController < ApplicationController
   # GET /nodes
   # GET /nodes.json
   def index
-    @title = "All Topics"
-    @nodes = Node.all
+    @title = "All Nodes"
+    @nodes = Node.order(:id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -19,6 +19,7 @@ class NodesController < ApplicationController
   def new
     @submit_text = "Create"
     @node = Node.new(:title => params[:title])
+    @topic_id = params[:topic_id]
     @source_id = params[:source_id]
 
     respond_to do |format|
@@ -56,10 +57,17 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.save
+        if params[:topic_id]
+          @node.topic_node_memberships.create!(:topic_id => params[:topic_id])
+        end
         if params[:source_id]
           @node.source_edges.create!(:source_id => params[:source_id])
+          source = Node.find(params[:source_id])
+          source.topics.each do |t|
+            @node.topic_node_memberships.create!(:topic_id => t.id)
+          end
         end
-        format.html { redirect_to nodes_path, notice: 'Node was successfully created.' }
+        format.html { redirect_to :back, notice: 'Post was successfully created.' }
         format.json { render json: @node, status: :created, location: @node }
         format.js
       else
@@ -95,7 +103,7 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.update_attributes(params[:node])
-        format.html { redirect_to @node, notice: 'Node was successfully updated.' }
+        format.html { redirect_to @node, notice: 'Post was successfully updated.' }
         format.json { head :ok }
       else
         format.html { render action: "edit" }
