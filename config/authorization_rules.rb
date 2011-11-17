@@ -11,6 +11,9 @@ authorization do
 
   role :user do
     has_permission_on :topics, :to => [:read, :create]
+    has_permission_on :topics, :to => :update do
+      if_attribute :creator => is {user}
+    end
     has_permission_on :nodes, :to => [:show, :create]
     has_permission_on :nodes, :to => :update do
       if_attribute :creator => is {user}
