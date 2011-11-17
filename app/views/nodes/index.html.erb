@@ -8,6 +8,7 @@
     <th>Creator</th>
     <th>Sources</th>
     <th>Sinks</th>
+    <th>Topics</th>
     <th></th>
     <th></th>
     <th></th>
@@ -29,6 +30,7 @@
     <td><%= node.creator.name %></td>
     <td><%= node.sources.map {|s| s.id}.join(", ") %></td>
     <td><%= node.sinks.map {|s| s.id}.join(", ") %></td>
+    <td><%= node.topics.map {|t| t.id}.join(", ") %></td>
     <td><%= link_to 'Show', node %></td>
     <td><%= link_to 'Edit', edit_node_path(node) %></td>
     <td><%= link_to 'Destroy', node, confirm: 'Are you sure?', method: :delete %></td>

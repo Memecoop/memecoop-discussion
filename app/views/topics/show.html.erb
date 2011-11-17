@@ -1,7 +1,11 @@
 <h1>Title: <%= @topic.title %></h1>
 <h4>Description: <%= @topic.description %></h4>
 
-<%= traverse_node_tree(@tree[:roots]) {|n| @tree[:children][n]} %>
+<% if @tree[:roots].empty? %>
+  There are no posts in this topic yet.
+<% else %>
+  <%= traverse_node_tree(@tree[:roots]) {|n| @tree[:children][n]} %>
+<% end %>
 
 <br />
 

@@ -1,6 +1,7 @@
 <h1>Listing users</h1>
 <table>
   <tr>
+    <th>ID</th>
     <th>Username</th>
     <th>Email</th>
     <th>Roles</th>
@@ -9,6 +10,7 @@
   </tr>
   <% @users.each do |user| %>
     <tr>
+      <td><%= user.id %></td>
       <td><%= user.name %></td>
       <td><%= user.email %></td>
       <td><%= user.roles %></td>
