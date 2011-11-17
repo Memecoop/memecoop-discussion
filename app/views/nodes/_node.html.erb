@@ -22,14 +22,7 @@
       <% else %>
         anonymous
       <% end %>
-      <%= time_ago_in_words(node.created_at) %> ago (<%= node.created_at.strftime("%m/%d/%Y, %I:%M %p") %>), 
-    </span>
-    <span class="category">Category:
-      <% if node.category %>
-        <%= node.category %>
-      <% else %>
-        [No Category]
-      <% end %>
+      <%= time_ago_in_words(node.created_at) %> ago (<%= node.created_at.strftime("%m/%d/%Y, %I:%M %p") %>).
     </span>
     <% if Rails.env.development? %>
       <span class="debug">

@@ -9,13 +9,6 @@
     <%= f.label :sink_id %><br />
     <%= f.text_field :sink_id %>
   </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.select(:category,
-       [['Answer', :answer],
-        ['Refutation', :refutation],
-        ['Related', :related]]) %>
-  </div>
   <div>
     <%= f.submit @submit_text %>
   </div>

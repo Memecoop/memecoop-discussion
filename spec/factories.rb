@@ -12,7 +12,6 @@ end
 Factory.define :node do |n|
   n.title                 "Sample title"
   n.content               "Sample content"
-  n.category              "Data"
 end
 
 Factory.define :edge do |e|

@@ -1,5 +1,5 @@
 class Node < ActiveRecord::Base
-  attr_accessible :content, :title, :category
+  attr_accessible :content, :title
 
   # "Sinks" refers to nodes at the end of edges going out from this Node.
 

@@ -40,7 +40,7 @@ class NodesController < ApplicationController
       content = "[Provide detailed feedback here.]\n\n" +
                 "(For page: " + params[:path] + ")"
 
-      @node = Node.new(:title => title, :content => content, :category => :feedback)
+      @node = Node.new(:title => title, :content => content)
 
       respond_to do |format|
         format.html { render "new" }

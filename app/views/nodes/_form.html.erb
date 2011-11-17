@@ -17,17 +17,6 @@
     <%= f.label :content %><br />
     <%= f.text_area :content %>
   </div>
-  <div class="field">
-    <%= f.label :category %><br />
-    <%= f.select(:category,
-       [['Topic', :topic],
-        ['Model', :model],
-        ['Data', :data],
-        ['Objective', :objective],
-        ['Challenge', :challenge],
-        ['Question', :question],
-        ['Feedback', :feedback]]) %>
-  </div>
   <div>
     <%= f.submit @submit_text %>
   </div>
