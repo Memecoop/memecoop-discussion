@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
   validates :name, :presence => true
 
   has_many :posts, :class_name => 'Node', :foreign_key => 'creator_id'
-  has_many :ratings
-  has_many :user_authenticators
+  has_many :topics, :class_name => 'Topic', :foreign_key => 'creator_id'
+  has_many :ratings, :dependent => :destroy
+  has_many :user_authenticators, :dependent => :destroy
 
   # Code to support declarative_authorization package.
 
