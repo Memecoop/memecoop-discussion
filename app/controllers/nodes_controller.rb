@@ -22,6 +22,10 @@ class NodesController < ApplicationController
     @topic_id = params[:topic_id]
     @source_id = params[:source_id]
 
+    # Set path to redirect to after node is created.
+
+    flash[:page_to_redirect_to] = request.referer
+
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @node }
@@ -33,19 +37,27 @@ class NodesController < ApplicationController
     @submit_text = "Leave Feedback"
 
     # Check for "feedback?path" in the URL, to avoid recursive feedback-on-feedback-on- ...
+
     if /feedback\?path/i =~ params[:path]
       redirect_to feedback_path(:path => feedback_path)
-    else
-      title = "Feedback: [Summarize your feedback here]"
-      content = "[Provide detailed feedback here.]\n\n" +
-                "(For page: " + params[:path] + ")"
+      return
+    end
 
-      @node = Node.new(:title => title, :content => content)
+    # Set path to redirect to after node is created.
 
-      respond_to do |format|
-        format.html { render "new" }
-        format.json { render json: @node }
-      end
+    flash[:page_to_redirect_to] = request.referer
+
+    # Pre-populate node content with feedback "template".
+
+    title = "Feedback: [Summarize your feedback here]"
+    content = "[Provide detailed feedback here.]\n\n" +
+              "(For page: " + params[:path] + ")"
+
+    @node = Node.new(:title => title, :content => content)
+
+    respond_to do |format|
+      format.html { render "new" }
+      format.json { render json: @node }
     end
   end
 
@@ -67,7 +79,8 @@ class NodesController < ApplicationController
             @node.topic_node_memberships.create!(:topic_id => t.id)
           end
         end
-        format.html { redirect_to :back, notice: 'Post was successfully created.' }
+        format.html { redirect_to flash[:page_to_redirect_to] || :back,
+                      notice: 'Post was successfully created.' }
         format.json { render json: @node, status: :created, location: @node }
         format.js
       else
