@@ -7,30 +7,42 @@ class UserSessionsController < ApplicationController
   def create
     auth_hash = request.env['omniauth.auth']
 
-    authenticator = UserAuthenticator.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
-    if authenticator
-      user = User.find(authenticator.user_id)
-      @user_session = UserSession.new(user)
-      if @user_session.save
-        flash[:notice] = "Welcome back to Memecoop - you're now logged in!"
-        redirect_back_or root_path
+    if (auth_hash)
+      authenticator = UserAuthenticator.find_by_provider_and_uid(auth_hash["provider"], auth_hash["uid"])
+      if authenticator
+        user = User.find(authenticator.user_id)
+        @user_session = UserSession.new(user)
+        if @user_session.save
+          flash[:notice] = "Welcome back to Memecoop - you're now logged in!"
+          redirect_back_or root_path
+        else
+          flash[:notice] = "Could not log in - maybe you have cookies disabled?"
+          redirect_back_or root_path
+        end
       else
-        flash[:notice] = "Could not log in - maybe you have cookies disabled?"
-        redirect_back_or root_path
+        user = User.new :name => auth_hash["info"]["name"], :email => auth_hash["info"]["email"]
+        user.user_authenticators.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
+        user.roles << "user"
+        user.save
+
+        @user_session = UserSession.new(user)
+        if @user_session.save
+          flash[:notice] = "Welcome to Memecoop - you're now logged in!"
+          redirect_back_or root_path
+        else
+          flash[:notice] = "Could not log in - maybe you have cookies disabled?"
+          redirect_back_or root_path
+        end
       end
     else
-      user = User.new :name => auth_hash["info"]["name"], :email => auth_hash["info"]["email"]
-      user.user_authenticators.build :provider => auth_hash["provider"], :uid => auth_hash["uid"]
-      user.roles << "user"
-      user.save
-
-      @user_session = UserSession.new(user)
+      @user_session = UserSession.new(params[:user_session])
       if @user_session.save
-        flash[:notice] = "Welcome to Memecoop - you're now logged in!"
+        flash[:notice] = "Successfully logged in."
         redirect_back_or root_path
       else
-        flash[:notice] = "Could not log in - maybe you have cookies disabled?"
-        redirect_back_or root_path
+       @title = "Sign in"
+       flash.now[:error] = "Invalid username/password combination."
+       redirect_back_or root_path
       end
     end
   end
