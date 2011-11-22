@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   def permission_denied
     store_location
     flash[:error] = "Sorry, you are not allowed to access that page."
-    redirect_to login_path
+    redirect_to "/auth/facebook"
   end
 
   private
