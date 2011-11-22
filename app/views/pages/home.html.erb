@@ -1,23 +1,25 @@
 <h2>
-  Welcome to the Memecoop (pre-)alpha!
+  Welcome to the Memecoop Alpha!
 </h2>
 
 <p>
-  We have a lot of work left to do before this is ready for the public, but you can help us now
-  by playing with the site and providing feedback. We apologize in advance when (not if) you hit
-  bugs, and we sincerely appreciate your patience while we keep building.
+Memecoop is a platform for discussing ideas. We're just getting started, but you're more than
+welcome to play with what we've got so far. For now it will look a lot like the comment threads or
+forums you're used to, but over the coming months we'll be steadily adding functionality.
 </p>
 
 <p>
-  To get started:
+To get started:
 </p>
 
 <ul>
-  <li><%= link_to "Use Facebook", "/auth/facebook" %> to login. *</li>
-  <li>Browse <%= link_to "current topics", topics_path %>.</li>
-  <li>Start a <%= link_to "new topic", new_topic_path %>.</li>
+  <% unless current_user %>
+    <li><%= link_to "Use Facebook", "/auth/facebook" %> to login.</li>
+  <% end %>
+  <% if permitted_to? :read, Topic.new %>
+    <li>Browse <%= link_to "current topics", topics_path %>.</li>
+  <% end %>
+  <% if permitted_to? :create, Topic.new %>
+    <li>Start a <%= link_to "new topic", new_topic_path %>.</li>
+  <% end %>
 </ul>
-
-<p>
-  *There's some functionality that's tied to being logged in, and we're planning to add more, so we'd prefer that you avoid browsing/posting as Anonymous.
-</p>

@@ -7,21 +7,31 @@
     <th>Creator</th>
     <th></th>
     <th></th>
-    <th></th>
   </tr>
 
 <% @topics.each do |topic| %>
   <tr>
-    <td><%= topic.title %></td>
+    <td>
+      <% if permitted_to? :read, topic %>
+        <%= link_to topic.title, topic %>
+      <% else %>
+        <%= topic.title %>
+      <% end %>
+    </td>
     <td><%= topic.description %></td>
     <td><%= topic.creator.name %></td>
-    <td><%= link_to 'Show', topic %></td>
-    <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-    <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
+    <% if permitted_to? :edit, topic %>
+      <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+    <% end %>
+    <% if permitted_to? :delete, topic %>
+      <td><%= link_to 'Destroy', topic, confirm: 'Are you sure?', method: :delete %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Topic', new_topic_path %>
+<% if permitted_to? :create, Topic.new %>
+  <%= link_to 'New Topic', new_topic_path %>
+<% end %>

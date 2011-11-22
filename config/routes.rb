@@ -13,7 +13,7 @@ Memegraph::Application.routes.draw do
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
-  match '/home', :to => 'pages#home'
+  match '/about', :to => 'pages#about'
   match '/help', :to => 'pages#help'
   match '/feedback', :to => 'nodes#feedback'
   match '/login', :to => 'user_sessions#new'
