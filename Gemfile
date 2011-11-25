@@ -15,6 +15,9 @@ gem 'authlogic', :git => 'git://github.com/odorcicd/authlogic.git', :branch => '
 # Use declarative_authorization for role assignments.
 gem "declarative_authorization", :git => "git://github.com/stffn/declarative_authorization.git"
 
+# Use Bootstrap for layout & CSS magic
+gem 'bootstrap-sass'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

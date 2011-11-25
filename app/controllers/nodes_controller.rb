@@ -17,7 +17,7 @@ class NodesController < ApplicationController
   # GET /nodes/new
   # GET /nodes/new.json
   def new
-    @submit_text = "Create"
+    @submit_text = "Create Post"
     @node = Node.new(:title => params[:title])
     @topic_id = params[:topic_id]
     @source_id = params[:source_id]
@@ -56,7 +56,7 @@ class NodesController < ApplicationController
     @node = Node.new(:title => title, :content => content)
 
     respond_to do |format|
-      format.html { render "new" }
+      format.html { render "feedback" }
       format.json { render json: @node }
     end
   end
@@ -80,7 +80,7 @@ class NodesController < ApplicationController
           end
         end
         format.html { redirect_to flash[:page_to_redirect_to] || :back,
-                      notice: 'Post was successfully created.' }
+                      :flash => { :success => 'Post was successfully created.' } }
         format.json { render json: @node, status: :created, location: @node }
         format.js
       else
@@ -105,7 +105,7 @@ class NodesController < ApplicationController
 
   # GET /nodes/1/edit
   def edit
-    @submit_text = "Update"
+    @submit_text = "Update Post"
     @node = Node.find(params[:id])
   end
 
@@ -116,7 +116,8 @@ class NodesController < ApplicationController
 
     respond_to do |format|
       if @node.update_attributes(params[:node])
-        format.html { redirect_to @node, notice: 'Post was successfully updated.' }
+        format.html { redirect_to @node,
+                      :flash => { :success => 'Post was successfully updated.' } }
         format.json { head :ok }
       else
         format.html { render action: "edit" }

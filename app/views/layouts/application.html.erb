@@ -2,29 +2,34 @@
 <html>
   <head>
     <title><%= title %></title>
-    <%= render 'layouts/stylesheets' %>
+    <%= render :partial => 'layouts/stylesheets' %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <div class="container">
-      <%= render 'layouts/header' %>
-      <section class="round">
-        <% flash.select {|k, v| [:success, :notice, :error].include? k}.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
+    <div class="wrapper">
+      <%= render :partial => 'layouts/header' %>
+      <div class="container">
+        <section id="content">
+          <%= render :partial => 'layouts/flash', :locals => {:flash => flash} %>
+          <%= yield %>
+        </section>
+        <% if Rails.env.development? and (params[:show_debug] != nil) %>
+        <section id="debug-dump">
+          <div class="row">
+            <h2>Debug Info</h2>
+            <%= debug params %>
+            <% if current_user %>
+              <%= debug current_user %>
+            <% else %>
+              <pre>No user logged in</pre>
+            <% end %>
+          </div>
+        </section>
         <% end %>
-        <%= yield %>
-      </section>
-      <%= render 'layouts/footer' %>
-      <% if Rails.env.development? %>
-        <pre class="debug_dump">DEBUG OUTPUT</pre>
-        <%= debug params %>
-        <% if current_user %>
-          <%= debug current_user %>
-        <% else %>
-          <pre class="debug_dump">No user logged in</pre>
-        <% end %>
-      <% end %>
+      </div>
+      <div class="push"></div>
     </div>
+    <%= render :partial => 'layouts/footer' %>
   </body>
 </html>

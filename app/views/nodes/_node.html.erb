@@ -1,5 +1,4 @@
-<div class="node round" id="node_<%= node.id %>">
-
+<div class="node" id="node_<%= node.id %>">
   <div class="title_bar" id="title_bar_<%= node.id %>">
     <span class="title">
       <% if node.title.blank? %>
@@ -33,7 +32,7 @@
         depth = <%= options[:depth] %>)
       </span>
     <% end %>
-    <span class="actions">
+    <span class="manage">
       <% if permitted_to? :edit, node %>
         <%= link_to 'Edit', edit_node_path(node) %>
       <% end %>
@@ -41,32 +40,35 @@
         <%= link_to 'Delete', node_path(node), :method => :delete %>
       <% end %>
       <% if permitted_to? :create, Edge.new %>
-        <%= link_to 'Connect to...', new_edge_path(:source_id => node.id) %>
+        <%= link_to 'Link', new_edge_path(:source_id => node.id) %>
       <% end %>
     </span>
   </div>
-  <div class="content" id="content_<%= node.id %>"><%= simple_format node.content %></div>
+  <div class="content" id="content_<%= node.id %>">
+    <%= simple_format node.content %>
+  </div>
 
-  <div class="reply" id="reply_to_<%= node.id %>">
+  <span class="reply" id="reply_to_<%= node.id %>">
     <% if permitted_to? :create, Node.new %>
+      <%= link_to 'Reply',
+                  new_node_path(:source_id => node.id, :title => reply_title(node.title)),
+                  :class => "reply_link" %>
+    <% end %>
 
     <% # TODO: Is there a cleaner way to code this? %>
     <div class="reply_form">
       <%= form_for(Node.new) do |f| %>
-        <div class="field">
-          <%= f.text_area :content %>
+        <div class="clearfix">
+          <div class="input">
+            <%= f.text_area :content, :class => "xxlarge", :rows => "5" %>
+          </div>
         </div>
         <%= f.hidden_field :title, :value => reply_title(node.title) %>
         <input type="hidden" id="source_id" name="source_id" value="<%= node.id %>" />
-        <div class="action">
-          <%= f.submit %>
+        <div class="actions">
+          <%= f.submit "Reply", :class => "btn primary" %>
         </div>
       <% end %>
     </div>
-
-    <%= link_to 'Reply',
-                new_node_path(:source_id => node.id, :title => reply_title(node.title)),
-                :class => "reply_link" %>
-    <% end %>
-  </div>
+  </span>
 </div>

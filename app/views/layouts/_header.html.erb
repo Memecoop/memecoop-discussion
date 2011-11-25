@@ -1,31 +1,45 @@
 <header>
-  <nav id="nav_menu" class="round">
-    <ul>
-      <li><%= link_to "Home", root_path %></li>
-      <% if permitted_to? :read, Topic.new %>
-        <li><%= link_to "All Topics", topics_path %>
-      <% end %>
-      <% if permitted_to? :manage, User.new %>
-        <li><%= link_to "Manage Users", users_path %></li>
-      <% end %>
-      <% if permitted_to? :manage, Node.new %>
-        <li><%= link_to "Manage Nodes", nodes_path %></li>
-      <% end %>
-      <% if permitted_to? :manage, Edge.new %>
-        <li><%= link_to "Manage Edges", edges_path %></li>
-      <% end %>
-    </ul>
-  </nav>
-
-  <nav id="user_menu" class="round">
-    <ul>
-      <% if current_user %>
-        <li>Logged in as <%= current_user.name %></li>
-        <li><%= link_to "Edit Profile", edit_user_path(current_user.id) %></li>
-        <li><%= link_to "Logout", logout_path %></li>
-      <% else %>
-        <li><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
-      <% end %>
-    </ul>
-  </nav>
+  <div class="topbar-wrapper" style="z-index: 5;">
+    <div class="topbar" data-dropdown="dropdown">
+      <div class="topbar-inner">
+        <div class="container">
+          <h3><%= link_to "Memecoop", root_path %></h3>
+          <ul class="nav">
+            <li><%= link_to "Home", root_path %></li>
+            <% if permitted_to? :read, Topic.new %>
+              <li><%= link_to "All Topics", topics_path %>
+            <% end %>
+            <% can_manage_user = permitted_to? :manage, User.new %>
+            <% can_manage_nodes = permitted_to? :manage, Node.new %>
+            <% can_manage_edges = permitted_to? :manage, Edge.new %>
+            <% if can_manage_user or can_manage_nodes or can_manage_edges %>
+              <li class="dropdown">
+                <%= link_to "Manage", "#", :class => "dropdown-toggle" %>
+                <ul class="dropdown-menu">
+                  <% if can_manage_user %>
+                    <li><%= link_to "Manage Users", users_path %></li>
+                  <% end %>
+                  <% if can_manage_nodes %>
+                    <li><%= link_to "Manage Nodes", nodes_path %></li>
+                  <% end %>
+                  <% if can_manage_edges %>
+                    <li><%= link_to "Manage Edges", edges_path %></li>
+                  <% end %>
+                </ul>
+              </li>
+            <% end %>
+          </ul>
+          <ul class="nav secondary-nav">
+            <% if current_user %>
+              <li><%= link_to "Edit Profile (#{current_user.name})",
+                              edit_user_path(current_user.id) %></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Connect With Facebook", "/auth/facebook" %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

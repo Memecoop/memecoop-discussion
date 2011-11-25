@@ -15,7 +15,7 @@ module NodesHelper
   end
 
   def rating_markup(node)
-    concat "Score: "
+    concat "Votes: "
     concat "<span class=\"rating_number\">".html_safe()
     concat total_rating(node)
     concat "</span>".html_safe()
@@ -40,7 +40,7 @@ module NodesHelper
 
     ret << "<ul class=\"sibling_node_list\">\n"
     nodes.each do |n|
-      ret << "<li class=\"node_container round\">\n"
+      ret << "<li>\n"
       ret << render_node(n, options)
       new_options = options.merge({:depth => options[:depth] + 1})
       ret << traverse_node_tree(lookup_children.call(n), new_options, &lookup_children)

@@ -1,13 +1,17 @@
-<h1>Title: <%= @topic.title %></h1>
-<h4>Description: <%= @topic.description %></h4>
+<div class="page-header">
+  <h1>Topic: <%= @topic.title %></h1>
+</div>
 
-<% if @tree[:roots].empty? %>
-  There are no posts in this topic yet.
-<% else %>
-  <%= traverse_node_tree(@tree[:roots]) {|n| @tree[:children][n]} %>
-<% end %>
-
-<br />
+<div class="row">
+  <div class="span16">
+    <h4>Description: <%= @topic.description %></h4>
+    <% if @tree[:roots].empty? %>
+      <p>There are no posts in this topic yet.</p>
+    <% else %>
+      <%= traverse_node_tree(@tree[:roots]) {|n| @tree[:children][n]} %>
+    <% end %>
+  </div>
+</div>
 
 <% if permitted_to? :create, Node.new %>
   <%= render_new_node_link :topic_id => @topic.id %>

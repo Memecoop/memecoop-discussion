@@ -33,7 +33,8 @@ class EdgesController < ApplicationController
 
     respond_to do |format|
       if @edge.save
-        format.html { redirect_to nodes_path, notice: 'Edge was successfully created.' }
+        format.html { redirect_to nodes_path,
+                      :flash => { :success => 'Edge was successfully created.' } }
         format.json { render json: @edge, status: :created, location: @edge }
         format.js
       else

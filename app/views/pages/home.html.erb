@@ -2,24 +2,26 @@
   Welcome to the Memecoop Alpha!
 </h2>
 
-<p>
-Memecoop is a platform for discussing ideas. We're just getting started, but you're more than
-welcome to play with what we've got so far. For now it will look a lot like the comment threads or
-forums you're used to, but over the coming months we'll be steadily adding functionality.
-</p>
+<div class="row">
+  <div class="span12"
+    <p>
+    Memecoop is a platform for discussing ideas. We're just getting started, but you're more than
+    welcome to play with what we've got so far. For now it will look a lot like the comment threads or
+    forums you're used to, but over the coming months we'll be steadily adding functionality.
+    </p>
 
-<p>
-To get started:
-</p>
+    <h4>Getting Started</h4>
 
-<ul>
-  <% unless current_user %>
-    <li><%= link_to "Use Facebook", "/auth/facebook" %> to login.</li>
-  <% end %>
-  <% if permitted_to? :read, Topic.new %>
-    <li>Browse <%= link_to "current topics", topics_path %>.</li>
-  <% end %>
-  <% if permitted_to? :create, Topic.new %>
-    <li>Start a <%= link_to "new topic", new_topic_path %>.</li>
-  <% end %>
-</ul>
+    <ul>
+      <% unless current_user %>
+        <li><%= link_to "Use Facebook", "/auth/facebook" %> to login.</li>
+      <% end %>
+      <% if permitted_to? :read, Topic.new %>
+        <li>Browse <%= link_to "current topics", topics_path %>.</li>
+      <% end %>
+      <% if permitted_to? :create, Topic.new %>
+        <li>Start a <%= link_to "new topic", new_topic_path %>.</li>
+      <% end %>
+    </ul>
+  </div>
+</div>

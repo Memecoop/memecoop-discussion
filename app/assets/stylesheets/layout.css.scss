@@ -1,0 +1,47 @@
+@import "bootstrap";
+
+html, body {
+  height: 100%;
+}
+
+#content {
+  padding-top: 60px;
+}
+
+// Footer
+
+.wrapper {
+  min-height: 100%;
+  margin: 0 auto -94px;
+}
+
+.push {
+  height: 94px;
+  clear: both;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+
+  padding: 10px auto 10px auto;
+}
+
+footer ul {
+  float: none;
+  margin: 0;
+  padding: 0;
+}
+
+footer ul li {
+  list-style-type: none;
+  display: inline-block;
+  padding-right: 5px;
+}
+
+// Debug
+
+#debug-dump {
+  padding-top: 20px;
+  text-align: left;
+}

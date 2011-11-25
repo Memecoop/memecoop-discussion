@@ -19,7 +19,10 @@
       <% end %>
     </td>
     <td><%= topic.description %></td>
-    <td><%= topic.creator.name %></td>
+
+    <td><% if topic.creator %>
+      <%= topic.creator.name %>
+    <% end %></td>
     <% if permitted_to? :edit, topic %>
       <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
     <% end %>
@@ -33,5 +36,5 @@
 <br />
 
 <% if permitted_to? :create, Topic.new %>
-  <%= link_to 'New Topic', new_topic_path %>
+  <%= link_to 'New Topic', new_topic_path, :class => "btn primary" %>
 <% end %>

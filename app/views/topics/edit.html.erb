@@ -1,6 +1,11 @@
 <h1>Editing topic</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @topic %> |
-<%= link_to 'Back', topics_path %>
+<div class="row">
+  <div class="span4">
+    <h3>Instructions</h3>
+    <p>Make your changes, then click "Update Topic".</p>
+  </div>
+  <div class="span12">
+    <%= render 'form' %>
+  </div>
+</div>

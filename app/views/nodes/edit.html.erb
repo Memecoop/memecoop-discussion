@@ -1,5 +1,12 @@
 <h1>Editing post</h1>
 
-<%= render 'form' %>
+<div class="row">
+  <div class="span4">
+    <h3>Instructions</h3>
+    <p>Make your changes, then click "Update Post".</p>
+  </div>
+  <div class="span12">
+    <%= render 'form' %>
+  </div>
+</div>
 
-<%= link_to 'Go to post', @node %>

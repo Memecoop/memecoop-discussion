@@ -13,10 +13,10 @@ class UserSessionsController < ApplicationController
         user = User.find(authenticator.user_id)
         @user_session = UserSession.new(user)
         if @user_session.save
-          flash[:notice] = "Welcome back to Memecoop - you're now logged in!"
+          flash[:success] = "Welcome back to Memecoop - you're now logged in!"
           redirect_to :back
         else
-          flash[:notice] = "Could not log in - maybe you have cookies disabled?"
+          flash[:error] = "Could not log in - maybe you have cookies disabled?"
           redirect_to :back
         end
       else
@@ -27,17 +27,17 @@ class UserSessionsController < ApplicationController
 
         @user_session = UserSession.new(user)
         if @user_session.save
-          flash[:notice] = "Welcome to Memecoop - you're now logged in!"
+          flash[:success] = "Welcome to Memecoop - you're now logged in!"
           redirect_to :back
         else
-          flash[:notice] = "Could not log in - maybe you have cookies disabled?"
+          flash[:error] = "Could not log in - maybe you have cookies disabled?"
           redirect_to :back
         end
       end
     else
       @user_session = UserSession.new(params[:user_session])
       if @user_session.save
-        flash[:notice] = "Successfully logged in."
+        flash[:success] = "Successfully logged in."
         redirect_to :back
       else
        @title = "Sign in"
@@ -49,12 +49,12 @@ class UserSessionsController < ApplicationController
 
   def destroy
     current_user_session.destroy
-    flash[:notice] = "Successfully logged out."
+    flash[:success] = "Successfully logged out."
     redirect_to root_path
   end
 
   def failure
-    flash[:notice] = "Sorry, but you didn't allow access to our app!"
+    flash[:error] = "Sorry, but you didn't allow access to our app!"
     redirect_to :back
   end
 end

@@ -1,10 +1,9 @@
 <footer>
-  <nav class="round">
-    <ul>
-      <li><%= link_to "About Memecoop", about_path %></li>
-      <li><%= link_to "Blog", "http://blog.memecoop.com/posts/" %></li>
-      <li><%= link_to "Contact", "mailto:info@memecoop.com" %></li>
-      <li><%= link_to 'Leave Feedback', feedback_path(:path => request.fullpath) %></li>
-    </ul>
-  </nav>
+  <p>&copy; Memecoop 2011</p>
+  <ul>
+    <li><%= link_to "About Memecoop", about_path %></li>
+    <li><%= link_to "Blog", "http://blog.memecoop.com" %></li>
+    <li><%= link_to "Contact", "mailto:info@memecoop.com" %></li>
+    <li><%= link_to 'Leave Feedback', feedback_path(:path => request.fullpath) %></li>
+  </ul>
 </footer>

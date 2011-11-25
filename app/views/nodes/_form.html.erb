@@ -1,23 +1,29 @@
 <%= form_for(@node) do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
+  <fieldset>
+    <%= render 'shared/error_messages', :object => f.object %>
 
-  <% if @source_id %>
-    <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
-  <% end %>
+    <% if @source_id %>
+      <input type="hidden" id="source_id" name="source_id" value="<%= @source_id %>" />
+    <% end %>
 
-  <% if @topic_id %>
-    <input type="hidden" id="topic_id" name="topic_id" value="<%= @topic_id %>" />
-  <% end %>
+    <% if @topic_id %>
+      <input type="hidden" id="topic_id" name="topic_id" value="<%= @topic_id %>" />
+    <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title, :size => "80" %>
-  </div>
-  <div class="field">
-    <%= f.label :content %><br />
-    <%= f.text_area :content %>
-  </div>
-  <div>
-    <%= f.submit @submit_text %>
-  </div>
+    <div class="clearfix">
+      <%= f.label :title %>
+      <div class="input">
+        <%= f.text_field :title, :class => "xxlarge", :size => "80" %>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :content %>
+      <div class="input">
+        <%= f.text_area :content, :class => "xxlarge", :rows => "5" %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit @submit_text, :class => "btn primary" %>
+    </div>
+  </fieldset>
 <% end %>

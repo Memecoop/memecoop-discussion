@@ -21,17 +21,18 @@
                         :length => 30,
                         :omission => '... ',
                         :separate => ' ') %>
-    <td><%= node.title %></td>
+    <td><%= link_to node.title, node %></td>
     <% content = truncate(node.content,
                           :length => 40,
                           :omission => '... ',
                           :separate => ' ') %>
     <td><%= content %></td>
-    <td><%= node.creator.name %></td>
-    <td><%= node.sources.map {|s| s.id}.join(", ") %></td>
-    <td><%= node.sinks.map {|s| s.id}.join(", ") %></td>
-    <td><%= node.topics.map {|t| t.id}.join(", ") %></td>
-    <td><%= link_to 'Show', node %></td>
+    <td><% if node.creator %>
+      <%= link_to node.creator.name, node.creator %>
+    <% end %></td>
+    <td><%= node.sources.map {|s| link_to s.id, s}.join(", ").html_safe %></td>
+    <td><%= node.sinks.map {|s| link_to s.id, s}.join(", ").html_safe %></td>
+    <td><%= node.topics.map {|t| link_to t.id, t}.join(", ").html_safe %></td>
     <td><%= link_to 'Edit', edit_node_path(node) %></td>
     <td><%= link_to 'Destroy', node, confirm: 'Are you sure?', method: :delete %></td>
   </tr>

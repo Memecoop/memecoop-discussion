@@ -1,12 +1,24 @@
-<%= form_for @user do |f| %>
-  <%= render 'shared/error_messages', :object => f.object %>
-  <p>
-    <%= f.label :name %><br />
-    <%= f.text_field :name %>
-  </p>
-  <p>
-    <%= f.label :email %><br />
-    <%= f.text_field :email %>
-  </p>
-  <p><%= f.submit "Submit" %></p>
-<% end %>
+<div class="row">
+  <div class="span12">
+  <%= form_for @user do |f| %>
+    <fieldset>
+      <%= render 'shared/error_messages', :object => f.object %>
+      <div class="clearfix">
+        <%= f.label :name %>
+        <div class="input">
+          <%= f.text_field :name, :class => "xlarge" %>
+        </div>
+      </div>
+      <div class="clearfix">
+        <%= f.label :email %>
+        <div class="input">
+          <%= f.text_field :email, :class => "xlarge" %>
+        </div>
+      </div>
+      <div class="actions">
+        <%= f.submit :class => "btn primary" %>
+      </div>
+    </fieldset>
+  <% end %>
+  </div>
+</div>

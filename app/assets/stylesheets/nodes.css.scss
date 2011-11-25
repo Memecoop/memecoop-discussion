@@ -2,38 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-textarea {
-  width: 40em;
-  height: 15em;
-}
-
 ul.sibling_node_list {
   list-style-type: none;
 }
 
-.node_container {
-  padding: 5px 10px 5px 10px;
-  border: 1px solid #E0E0E0;
-  margin-top: 5px;
+.node {
+  margin-top: 10px;
 }
 
-.title_bar {
-  background-color: #E0E0E0;
-  .title {
-    font-size: 100%;
-    font-weight: bold;
-    padding-left: 5px;
-    overflow-x: hidden;
+.node .title_bar {
+  background-color: black;
+  color: #F0F0F0;
+  padding: 3px 8px;
+  overflow-x: hidden;
+  .title, .title a {
+    font-size: 120%;
   }
+  .rating {
+    font-size: 110%;
+  }
+  a {
+    color: inherit;
+  }
+  moz-border-radius: 10px 10px 0 0;
+  webkit-border-radius: 10px 10px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
-.metadata_bar {
+.node .metadata_bar {
   background-color: #F0F0F0;
   font-size: 0.8em;
   padding: 3px 5px 3px 5px;
 }
 
-.actions {
+.node .data {
+  width: 40%;
+  font-size: 1.0em;
+  padding-top: .5em;
+  margin-bottom: -1.0em;
+}
+
+.node .manage {
   float: right;
   vertical-align: middle;
   margin-right: 5px;
@@ -42,8 +51,16 @@ ul.sibling_node_list {
   }
 }
 
-.content {
-  font-size: 1.0em;
-  padding-top: .5em;
-  margin-bottom: -1.0em;
+.node .reply {
+  padding-top: 5px;
+}
+
+.reply_form {
+  margin-top: 8px;
+  .clearfix .input {
+    margin-left: 0px;
+  }
+  .actions {
+    padding-left: 10px;
+  }
 }
