@@ -38,4 +38,10 @@ class ApplicationController < ActionController::Base
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
   end
+
+  def redirect_back(default = root_path)
+    redirect_to :back
+  rescue ActionController::RedirectBackError
+    redirect_to default
+  end
 end

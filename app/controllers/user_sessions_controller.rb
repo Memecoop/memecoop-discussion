@@ -14,10 +14,10 @@ class UserSessionsController < ApplicationController
         @user_session = UserSession.new(user)
         if @user_session.save
           flash[:success] = "Welcome back to Memecoop - you're now logged in!"
-          redirect_to :back
+          redirect_back
         else
           flash[:error] = "Could not log in - maybe you have cookies disabled?"
-          redirect_to :back
+          redirect_back
         end
       else
         user = User.new :name => auth_hash["info"]["name"], :email => auth_hash["info"]["email"]
@@ -28,21 +28,21 @@ class UserSessionsController < ApplicationController
         @user_session = UserSession.new(user)
         if @user_session.save
           flash[:success] = "Welcome to Memecoop - you're now logged in!"
-          redirect_to :back
+          redirect_back
         else
           flash[:error] = "Could not log in - maybe you have cookies disabled?"
-          redirect_to :back
+          redirect_back
         end
       end
     else
       @user_session = UserSession.new(params[:user_session])
       if @user_session.save
         flash[:success] = "Successfully logged in."
-        redirect_to :back
+        redirect_back
       else
        @title = "Sign in"
        flash.now[:error] = "Invalid username/password combination."
-       redirect_to :back
+       redirect_back
       end
     end
   end
@@ -55,6 +55,6 @@ class UserSessionsController < ApplicationController
 
   def failure
     flash[:error] = "Sorry, but you didn't allow access to our app!"
-    redirect_to :back
+    redirect_back
   end
 end
